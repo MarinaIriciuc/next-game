@@ -1,24 +1,23 @@
 "use client"
 import {Card} from "../ui/card";
-import MovieImage from "./MovieImage";
-import MovieTitle from "./MovieTitle";
-import MovieDescription from "./MovieDescription";
+import GameImage from "./GameImage";
+import GameTitle from "./GameTitle";
+import GameDescription from "./GameDescription";
 
-export default function MovieCard({movie}) {
+export default function GameCard({searchGame}) {
 
-    console.log(movie)
-    
-    return (
-        <>
-            <Card className="border-0 bg-primary-blue text-white ">
-                <MovieImage image={movie.image}/>
-                <div className="px-5 py-2">
-                    <MovieTitle title={movie.title}/>
-                </div>
-                <div className="flex  px-5 py-3 border-t border-[#7C87AB]">
-                    <MovieDescription/>
-                </div>
-            </Card>
-        </>
-    )
+
+  return (
+    <>
+      <Card className="border-0 bg-primary-blue text-white transform transition-transform hover:scale-105">
+        <GameImage image={searchGame?.image}/>
+        <div className="p-2">
+          <GameTitle title={searchGame?.title}/>
+        </div>
+        <div className="flex p-3 border-t border-[#7C87AB]">
+          <GameDescription rating={searchGame?.rating} released={searchGame?.released}/>
+        </div>
+      </Card>
+    </>
+  )
 }

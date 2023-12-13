@@ -1,16 +1,15 @@
-import { Heart, Popcorn } from "lucide-react";
-
-export default function MovieDescription(){
+"use client"
+export default function GameDescription({rating,released}){
     return (
-        <>
-               <div className="flex">
-                    <Heart/>
-                    <p className="ms-2">88%</p>
-                </div>
-                <div className="flex mx-4">
-                    <Popcorn/>
-                    <p className="ms-2">90%</p>
-                 </div>
-        </>
+        <div>
+            <div className="flex">
+                <p>Rating</p>
+                <p className="ms-3">{rating}</p>
+            </div>
+            <div className="flex flex-wrap">
+                <p>Release date:</p>
+                <p className="ms-3">{released}</p>
+            </div>
+        </div>
     )
 }

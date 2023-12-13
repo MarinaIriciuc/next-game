@@ -1,7 +1,7 @@
-export default function MovieImage({image}) {
+export default function GameImage({image}) {
     return (
         <>
-            <img src={image} className="h-[330px] w-full rounded-t-sm"/>
+            <img src={image} className="h-[300px] w-full rounded-t-sm object-cover" />
         </>
     )
 }

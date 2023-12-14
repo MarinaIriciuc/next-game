@@ -7,11 +7,11 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs))
 }
 
-
 const API_KEY = "51e8a8cc99234a3c8b0865bb011ab989"
 const GAME_API = `https://api.rawg.io/api/games?key=${API_KEY}`
 
 // my_api_key 37c1ca5c0b394b75896d3c2d7f76876f
+
 async function getAllGames(genres = '') {
   let response
   if (genres) {
@@ -106,21 +106,28 @@ async function getStores() {
   })
 }
 
-async function getGamesBySearch(search) {
-  const response = await fetch(`${GAME_API}&search=${search}`)
-  const {results} = await response.json();
-  return results.map(function (game) {
+async function getGamesBySearch(search, page = 1) {
+  try {
+    const response = await fetch(`${GAME_API}&search=${search}&page=${page}`).then()
+    const {results} = await response.json();
+    return results.map(function (game) {
+      return {
+        id: game.id,
+        title: game.name,
+        image: game.background_image,
+        released: game.released,
+        metascore: game.metacritic,
+        slug: game.slug,
+        genres: game.genres,
+        rating: game.rating
+      }
+    })
+  } catch (e) {
+
     return {
-      id: game.id,
-      title: game.name,
-      image: game.background_image,
-      released: game.released,
-      metascore: game.metacritic,
-      slug: game.slug,
-      genres: game.genres,
-      rating: game.rating
+      message: "Somethin went wrong."
     }
-  })
+  }
 }
 
 

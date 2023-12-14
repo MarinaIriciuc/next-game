@@ -1,5 +1,4 @@
 import {Button} from "@/components/ui/button";
-import GameCard from "@/components/GameCard/GameCard";
 import SortSection from "@/components/SortSection";
 import StoreFilter from "@/components/FilterSection/StoreFilter";
 import GenreFilter from "@/components/FilterSection/GenreFilter";
@@ -15,7 +14,7 @@ export default async function Home({searchParams}) {
   const genres = await getAllGenres();
   const platforms = await getPlatforms();
   const stores = await getStores();
-  const searchGames = await getGamesBySearch(searchParams.search || "Portal")
+  const searchGames = await getGamesBySearch(searchParams.search || "")
 
 
   return (
@@ -36,19 +35,17 @@ export default async function Home({searchParams}) {
               </div>
             </div>
             <div>
-              <div
-                className="flex justify-between border border-blue-900 rounded-sm items-center py-2 px-16">
+              <div className="flex justify-between border border-blue-900 rounded-sm items-center py-2 px-16">
                 <SortSection/>
               </div>
-              {/*<div className="grid grid-cols-3 gap-10 py-4">*/}
-              {/*  <GameList searchGames={searchGames}/>*/}
-              {/*</div>*/}
+
               {searchGames.length > 0 ? (
                 <>
                   <GameList searchGames={searchGames}/>
                 </>
               ) : (
-                <p className="text-[28px] tracking-wide flex justify-center mt-32">There is no game with this name.</p>
+                <p
+                  className="text-[28px] tracking-wide flex justify-center mt-32">{typeof searchGames === 'object' ? searchGames.message : 'There is no game with this name.'}</p>
               )}
               <div className="flex justify-center mt-12">
                 <LoadMoreButton/>

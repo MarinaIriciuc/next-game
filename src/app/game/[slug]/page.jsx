@@ -9,7 +9,7 @@ export default async function GamePage({params}) {
 
   return (
     <>
-      <div className="grid grid-cols-2 container-fluid py-28 min-h-screen gap-20">
+      <div className="grid grid-cols-2 py-28 px-20 min-h-screen gap-20 bg-blue-200">
         <div>
           <p className="text-md bg-blue-300 w-28 flex justify-center rounded-md text-white">{game.released}</p>
           <p className="text-[55px] font-bold">{game.title}</p>

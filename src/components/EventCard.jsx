@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function EventCard(){
     return (
         <>
@@ -58,8 +60,8 @@ export default function EventCard(){
                             <div className="w-3 h-5  dark:bg-gray-400 rounded-l-3xl"/>
                         </div>
                         <div className="mt-4 px-6 flex flex-col w-full justify-center items-center">
-                            <img src="https://cdn.tuk.dev/assets/templates/virtual-event-management/barCode.png"
-                                 alt="barcode"/>
+                            {/*<Image src="https://cdn.tuk.dev/assets/templates/virtual-event-management/barCode.png"*/}
+                            {/*     alt="" height="1000" width="1000" layout="responsive"/>*/}
                             <p className="text-sm font-bold leading-none text-gray-700 dark:text-gray-400 mt-2">253704938890287467</p>
                         </div>
                     </div>

@@ -10,25 +10,21 @@ export default function LoadMoreButton() {
 
   const [page, setPage] = useAtom(activePageAtom);
   const [, setFilteredGames] = useAtom(filteredGamesAtom);
-  const [isLoading, setLoading] = useAtom(loadingGame);
+  const [, setLoading] = useAtom(loadingGame);
 
   useEffect(() => {
 
     if (page > 1) {
-      // let mere = 5;
+      setLoading(true)
       getGamesBySearch("", page)
         .then((games) => {
-          // mere = 10;
           // console.log("DEPIND DE REZULTAT SI_L ASTEPT SA FIE REZOLVAT")
           setFilteredGames((prev) => [...prev, ...games])
           setLoading(false)
         })
-      setLoading(true)
-      // console.log(`Am ${mere} mere.`)
       // console.log("NU DEPIND DE REZULTAT SI MERG MAI DEPARTE CHIT CA E GATA SAU NU")
     }
   }, [page]);
-
 
 
   return (

@@ -1,4 +1,3 @@
-"use client"
 export default function GameDescription({rating,released}){
     return (
         <div>

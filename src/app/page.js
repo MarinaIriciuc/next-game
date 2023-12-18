@@ -1,47 +1,56 @@
-import {Button} from "@/components/ui/button";
 import SortSection from "@/components/SortSection";
 import StoreFilter from "@/components/FilterSection/StoreFilter";
 import GenreFilter from "@/components/FilterSection/GenreFilter";
-import {getAllGames, getAllGenres, getGamesBySearch, getPlatforms, getStores} from "@/lib/utils";
+import {
+  getAllGames,
+  getAllGenres,
+  getGames,
+  getGamesByGenre,
+  getGamesBySearch,
+  getPlatforms,
+  getStores
+} from "@/lib/utils";
 import PlatformFilter from "@/components/FilterSection/PlatformFilter";
 import LoadMoreButton from "@/components/LoadMoreButton";
 import GameList from "@/components/GamesList";
+import ClearFilterButton from "@/components/ClearFilterButton";
 
 
 export default async function Home({searchParams}) {
 
-  const games = await getAllGames();
+
+  // const games = await getAllGames();
   const genres = await getAllGenres();
   const platforms = await getPlatforms();
   const stores = await getStores();
-  const searchGames = await getGamesBySearch(searchParams.search || "")
+  // const searchGames = await getGamesBySearch(searchParams.search || "");
 
+  const filteredGames = await getGames(searchParams)
 
   return (
     <>
 
       <div className="bg-main-blue text-white min-h-screen py-48">
         <div className="container-fluid">
-          <div className="grid grid-cols-[260px_auto] gap-12">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-[260px_auto]">
             <div>
               <div className="flex justify-between items-center">
                 <p>Filter By</p>
-                <Button className="bg-transparent text-red-500">Clear All</Button>
+                <ClearFilterButton/>
               </div>
-              <div className="py-4">
+              <div className="py-4 hidden md:block">
                 <StoreFilter stores={stores}/>
                 <PlatformFilter platforms={platforms}/>
                 <GenreFilter genres={genres}/>
               </div>
             </div>
             <div>
-              <div className="flex justify-between border border-blue-900 rounded-sm items-center py-2 px-16">
+              <div className="flex justify-end border border-blue-900 rounded-sm items-center py-2 pe-4">
                 <SortSection/>
               </div>
-
-              {searchGames.length > 0 ? (
+              {filteredGames.length > 0 ? (
                 <>
-                  <GameList searchGames={searchGames}/>
+                  <GameList searchGames={filteredGames}/>
                 </>
               ) : (
                 <p

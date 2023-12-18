@@ -1,5 +1,6 @@
 import {getAchievementsBySlug, getGameBySlug} from "@/lib/utils";
 import {Card} from "@/components/ui/card";
+import Image from "next/image";
 
 
 export default async function GamePage({params}) {
@@ -9,12 +10,12 @@ export default async function GamePage({params}) {
 
   return (
     <>
-      <div className="grid grid-cols-2 py-28 px-20 min-h-screen gap-20 bg-blue-200">
+      <div className="grid grid-cols-1 sm:grid-cols-2 py-6 sm:py-28 px-4 sm:px-20 min-h-screen gap-4 sm:gap-20 bg-blue-100">
         <div>
-          <p className="text-md bg-blue-300 w-28 flex justify-center rounded-md text-white">{game.released}</p>
+          <p className="text-md bg-blue-300 w-28 flex justify-center rounded-md text-white sm:mt-0 mt-32">{game.released}</p>
           <p className="text-[55px] font-bold">{game.title}</p>
           <p className="text-[25px] font-bold mt-16">Ratings</p>
-          <div className="flex">
+          <div className="xl:flex grid">
             {game.reviews.map(function (item) {
               return (
                 <>
@@ -94,7 +95,9 @@ export default async function GamePage({params}) {
           </div>
         </div>
         <div>
-          <img src={game.image} alt=""/>
+          {game.image && (
+            <Image src={game.image} width="1000" height="1000" alt="" layout="responsive"/>
+          )}
           <p className="mt-4 text-[25px] font-semibold">Where to buy</p>
           <div className="grid grid-cols-2 ">
             {game.store.map(function (item) {
@@ -110,9 +113,11 @@ export default async function GamePage({params}) {
           {achievements.map(function (item, index) {
             return (
               <>
-                <Card className="mt-5" key={index}>
-                  <div className="flex items-center gap-6 ">
-                    <img src={item.image} className="w-16 object-cover" alt=""/>
+                <Card className="mt-5  hover:scale-105 transition-all duration-300" key={index}>
+                  <div className="flex items-center gap-6">
+                    {item.image && (
+                      <Image src={item.image} className="w-16 object-cover" width="1000" height="1000" alt="" />
+                    )}
                     <div>
                       <p className="text-[18px] font-medium">{item.name}</p>
                       <p className="text-[13px] font-medium text-blue-950">{item.description}</p>

@@ -1,4 +1,3 @@
-"use client"
 import {Card} from "../ui/card";
 import GameImage from "./GameImage";
 import GameTitle from "./GameTitle";

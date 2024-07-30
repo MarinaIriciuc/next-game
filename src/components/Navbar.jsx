@@ -13,9 +13,9 @@ export default function Navbar() {
         <Link href="/">
           <p className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-2 sm:mb-0">Game Nexus</p>
         </Link>
-        <div className="flex flex-grow justify-center sm:justify-end items-center gap-3 w-full sm:w-80">
-          <SearchInput/>
-        </div>
+        {/*<div className="flex flex-grow justify-center sm:justify-end items-center gap-3 w-full sm:w-80">*/}
+        {/*  <SearchInput/>*/}
+        {/*</div>*/}
       </div>
 
       {/*<div className="flex items-center gap-3">*/}

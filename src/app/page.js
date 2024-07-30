@@ -14,6 +14,7 @@ import PlatformFilter from "@/components/FilterSection/PlatformFilter";
 import LoadMoreButton from "@/components/LoadMoreButton";
 import GameList from "@/components/GamesList";
 import ClearFilterButton from "@/components/ClearFilterButton";
+import {Suspense} from "react";
 
 
 export default async function Home({searchParams}) {
@@ -39,9 +40,11 @@ export default async function Home({searchParams}) {
                 <ClearFilterButton/>
               </div>
               <div className="py-4 hidden md:block">
-                <StoreFilter stores={stores}/>
-                <PlatformFilter platforms={platforms}/>
-                <GenreFilter genres={genres}/>
+                <Suspense fallback={<>Loading...</>}>
+                  <StoreFilter stores={stores}/>
+                  <PlatformFilter platforms={platforms}/>
+                  <GenreFilter genres={genres}/>
+                </Suspense>
               </div>
             </div>
             <div>
